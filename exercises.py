@@ -11,10 +11,6 @@ class Game:
             'a3': None, 'b3': None, 'c3': None,
         }
     
-
-    def play_game(self):
-        print("🎮 Welcome to Tic-Tac-Toe! The game is starting...")
-
     def print_board(self):
         b = self.board
         print(f"""
@@ -91,18 +87,33 @@ class Game:
             self.tie = True
     
     def switch_turns(self):
-        
+
         # if statement will work also
         lookup = {
             'X': 'O',
             'O': 'X',
         }
         self.turn = lookup[self.turn]
+    
+    # ------------------------------------------
+    
+    def play_game(self):
+
+        print("🎮 Welcome to Tic-Tac-Toe! Type positions like A1, B2, C3.\n")
+
+        while not self.winner and not self.tie:
+
+            self.render()        
+            self.get_move()      
+            self.check_winner()  
+            self.check_tie()
+
+            if not self.winner and not self.tie:
+                self.switch_turns()
+
+        self.render()
 
 # --------------------------------------------------------
-player1 = Game()
+player = Game()
 
-player1.play_game()
-player1.render()
-player1.get_move()
-player1.print_board()
+player.play_game()
