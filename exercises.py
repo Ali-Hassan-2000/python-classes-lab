@@ -10,6 +10,11 @@ class Game:
             'a2': None, 'b2': None, 'c2': None,
             'a3': None, 'b3': None, 'c3': None,
         }
+
+        self.x_wins = 0
+        self.o_wins = 0
+        self.ties = 0
+
     
     def print_board(self):
         b = self.board
@@ -111,7 +116,35 @@ class Game:
             if not self.winner and not self.tie:
                 self.switch_turns()
 
+        if self.winner == 'X':
+            self.x_wins += 1
+        elif self.winner == 'O':
+            self.o_wins += 1
+        elif self.tie:
+            self.ties += 1
+
         self.render()
+
+        print(f"\nScoreboard:")
+        print(f"X wins: {self.x_wins}")
+        print(f"O wins: {self.o_wins}")
+        print(f"Ties: {self.ties}")
+
+        play_again = input("Do you want to play again? (y/n): ").lower()
+        
+        if play_again == 'y':
+            self.reset_game()
+            self.play_game()
+        else:
+            print("Thanks for playing (;")
+
+    def reset_game(self):
+        self.turn = 'X'
+        self.tie = False
+        self.winner = None
+        self.board = {key: None for key in self.board}
+
+
 
 # --------------------------------------------------------
 player = Game()
