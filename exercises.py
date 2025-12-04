@@ -80,6 +80,15 @@ class Game:
                 self.winner = b[p1]
                 return
 
+    def check_tie(self):
+        
+        # .values() get all the values in the board Object
+        # all() checks if every item in an iterable is True.
+        board_full = all(value is not None for value in self.board.values())
+        no_winner = self.winner is None
+
+        if board_full and no_winner:
+            self.tie = True
 
 
 player1 = Game()
