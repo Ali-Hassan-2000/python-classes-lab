@@ -38,9 +38,26 @@ class Game:
         self.print_board()
         self.print_message()
 
+    def get_move(self):
+
+        while True:
+            move = input("Enter a valid move (example: A1): ").lower()
+
+            if move not in self.board:
+                print("That position does not exist. Try again.")
+                continue
+
+            if self.board[move] is not None:
+                print("That space is already taken. Choose another one.")
+                continue
+
+            self.board[move] = self.turn
+            break
+
 
 player1 = Game()
 
 player1.play_game()
 player1.render()
-
+player1.get_move()
+player1.print_board()
