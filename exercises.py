@@ -89,12 +89,20 @@ class Game:
 
         if board_full and no_winner:
             self.tie = True
+    
+    def switch_turns(self):
+        
+        # if statement will work also
+        lookup = {
+            'X': 'O',
+            'O': 'X',
+        }
+        self.turn = lookup[self.turn]
 
-
+# --------------------------------------------------------
 player1 = Game()
 
 player1.play_game()
 player1.render()
 player1.get_move()
 player1.print_board()
-
